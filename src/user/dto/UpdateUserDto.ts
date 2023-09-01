@@ -3,7 +3,6 @@ export class UpdateUserDto {
     email: string;  
     name: string;
     password: string;
-    datecreated: Date;
-    active: Boolean;
+    active: boolean;
     roleid: number;
   }
