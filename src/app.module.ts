@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserController } from './user/user.controller';
+import { UserController } from './user/users.controller';
 import { RoleController } from './role/role.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import {User} from './user/entities/user.entity'
-import { UserModule } from './user/user.module';
+import {Users} from './user/entities/users.entity'
+import { UserModule } from './user/users.module';
+import { AuthModule } from './auth/auth.module';
 
 const DATABASE = process.env.DATABASE
 const DATABASE_USER=process.env.DATABASE_USER
@@ -21,11 +22,12 @@ const DATABASE_HOST = process.env.DATABASE_HOST
     username: 'cjfn',
     password: 'cjfn01',
     database: 'DbErp',
-    entities: [User],
-    synchronize: true,
+    entities: [Users],
+    synchronize: false,
     logging: true,
   }),
   UserModule,
+  AuthModule,
 ],
   controllers: [AppController],
   providers: [AppService],
