@@ -40,11 +40,16 @@ export class UserService {
         user.email = UpdateUserDto.email;
         user.active = UpdateUserDto.active;
         user.roleid = UpdateUserDto.roleid;
-        return this.usersRepository.save(user);
-        //return this.usersRepository.query(`CALL public.sp_users(1, 1, '${user.email}', '${user.name}', '${user.password}', true, '${user.roleid}')`)
+        user.id = UpdateUserDto.id;
+        return this.usersRepository.query(`CALL public.sp_users(2, '${user.id}', '${user.email}', '${user.name}', '${user.password}', true, '${user.roleid}')`)
       }
     
       async remove(id: number): Promise<{ affected?: number }> {
         return this.usersRepository.delete(id);
+      }
+
+      async login ( nameuser: string, pass: string) : Promise<any>{
+        const strQuery =  `CALL public.sp_userslogin('${nameuser}', '${pass}',	0, 	'')`;
+        return this.usersRepository.query(strQuery);
       }
 }
