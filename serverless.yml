@@ -2,13 +2,13 @@ service:
  name: nest-serverless-lambda-demo
 
 plugins:
- - 'serverless-plugin-typescript'
+ - serverless-plugin-typescript
  - serverless-plugin-optimize
  - serverless-offline
 
 provider:
  name: aws
- runtime: nodejs12.x
+ runtime: nodejs14.x
 
 functions:
  main: # The name of the lambda function
