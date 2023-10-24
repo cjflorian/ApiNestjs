@@ -1,11 +1,10 @@
 version: 0.2
+
 phases:
-install:
-    runtime-versions:
-      nodejs: 16
-build:
-  commands:    
-    build:
-      - npm run build                                
-run:                              
-  command: npm run start
+  build:
+    commands:
+       - npm ci && npm run build # clean install (npm ci) and build (npm run build)
+
+artifacts:
+  files:
+    - '**/*'
